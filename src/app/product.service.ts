@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Observable, throwError } from "rxjs";
+import { map, catchError } from "rxjs/operators";
 import { Product } from "./product";
 @Injectable({
   providedIn: "root"
@@ -18,6 +18,9 @@ export class ProductService {
             description: product.description
           };
         });
+      }),
+      catchError(err=>{
+        return throwError(err);
       })
     );
   }
@@ -30,6 +33,9 @@ export class ProductService {
           price: product.price,
           description: product.description
         };
+      }),
+      catchError(err => {
+        return throwError(err);
       })
     );
   }

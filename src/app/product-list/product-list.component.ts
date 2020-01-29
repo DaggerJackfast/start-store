@@ -8,10 +8,16 @@ import { Product } from "../product";
 })
 export class ProductListComponent {
   products: Product[] = [];
+  error: any;
   constructor(private productService: ProductService) {}
   ngOnInit() {
-    this.productService.getProducts().subscribe(data => (this.products = data));
-    console.log(this.products);
+    this.productService.getProducts().subscribe(
+      data => (this.products = data),
+      error => {
+        this.error = error.message;
+        console.log(error);
+      }
+    );
   }
   share() {
     window.alert("The product has been shared!");
