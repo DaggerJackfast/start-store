@@ -3,13 +3,15 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { map, catchError } from "rxjs/operators";
 import { Product } from "./product";
+import {environment} from "../environments/environment";
+
 @Injectable({
   providedIn: "root"
 })
 export class ProductService {
   constructor(private http: HttpClient) {}
   getProducts(): Observable<Product[]> {
-    return this.http.get("/assets/products.json").pipe(
+    return this.http.get(`${environment.APIEndpoint}/products`).pipe(
       map((data: any[] | any) => {
         return data.map(function(product: any) {
           return {
@@ -25,13 +27,12 @@ export class ProductService {
     );
   }
   getProduct(productId: number): Observable<Product> {
-    return this.http.get("/assets/products.json").pipe(
+    return this.http.get(`${environment.APIEndpoint}/products/${productId}`).pipe(
       map((data: any[] | any) => {
-        const product = data[productId];
         return {
-          name: product.name,
-          price: product.price,
-          description: product.description
+          name: data.name,
+          price: data.price,
+          description: data.description
         };
       }),
       catchError(err => {

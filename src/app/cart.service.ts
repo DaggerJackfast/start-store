@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: "root"
@@ -18,6 +19,6 @@ export class CartService {
     return this.items;
   }
   getShippingPrices(){
-    return this.http.get('/assets/shipping.json');
+    return this.http.get(`${environment.APIEndpoint}/shipping`);
   }
 }
