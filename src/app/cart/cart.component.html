@@ -2,19 +2,27 @@
 <p>
   <a routerLink="/shipping">Shipping Prices</a>
 </p>
-<div class="cart-item" *ngFor="let item of items">
-  <span>{{item.name}}</span>
-  <span>{{item.price | currency}}</span>
-  <button (click)="remoteFromCart(item)">Remove</button>
-</div>
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
-  <div>
-    <label for="name"></label>
-    <input type="text" id="name" formControlName="name">
+<ng-template *ngIf="items.length ; then thenBlock else elseBlock"></ng-template>
+<ng-template #thenBlock>
+  <div class="cart-item" *ngFor="let item of items">
+    <span>{{item.name}}</span>
+    <span>{{item.price | currency}}</span>
+    <button (click)="remoteFromCart(item)">Remove</button>
   </div>
-  <div>
-    <label for="address"></label>
-    <input type="text" id="address" formControlName="address">
-  </div>
-  <button class="button" type="submit">Purchase</button>
-</form>
+  <p>Customer information: </p>
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+    <div>      <label for="name"></label>
+      <input type="text" id="name" formControlName="name">
+      <span class="validated-error" *ngIf="submitted && checkoutForm.get('name').errors?.required" >*required</span>
+    </div>
+    <div>
+      <label for="address"></label>
+      <input type="text" id="address" formControlName="address">
+      <span class="validated-error" *ngIf="submitted && checkoutForm.get('address').errors?.required">*required</span>
+    </div>
+    <button class="button" type="submit">Purchase</button>
+  </form>
+</ng-template>
+<ng-template #elseBlock>
+  Cart is empty.
+</ng-template>

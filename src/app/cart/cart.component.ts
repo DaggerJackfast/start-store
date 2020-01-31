@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, FormControl, Validators} from "@angular/forms";
 import { NotifierService } from "angular-notifier";
 import { CartService } from "../cart.service";
 import { Product } from "../domains";
@@ -11,6 +11,7 @@ import { Product } from "../domains";
 export class CartComponent implements OnInit {
   items: Product[];
   checkoutForm: FormGroup;
+  submitted: boolean = false;
   constructor(
     private cartService: CartService,
     private formBuider: FormBuilder,
@@ -18,19 +19,25 @@ export class CartComponent implements OnInit {
   ) {
     this.items = this.cartService.getItems();
     this.checkoutForm = this.formBuider.group({
-      name: "",
-      address: ""
+      "name": ["", [Validators.required]],
+      "address": ["", [Validators.required]]
     });
   }
   remoteFromCart(item: Product){
     this.cartService.removeFromCart(item.id);
   }
   onSubmit(customer: any) {
+    this.submitted = true;
+    if(this.checkoutForm.invalid) return;
     this.cartService.checkoutOrder(customer).subscribe(data => {
-      console.log('print: ', data);
+      this.reset();
       this.notifier.notify('success', data.message);
-    });
+    });    
+  }
+
+  private reset(){
     this.items = this.cartService.clearCart();
+    this.submitted = false;
     this.checkoutForm.reset();
   }
 

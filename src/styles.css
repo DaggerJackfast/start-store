@@ -158,7 +158,13 @@ app-top-bar h1 {
   background-color: #EEEEEE;
 }
 
-
+.validated-error{
+  display: block;
+  color: #ce2722;
+  margin-bottom: 10px;
+  margin-top: -16px;
+  font-size: 12px;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
