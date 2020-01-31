@@ -1,8 +1,9 @@
 /* Global Styles */
+@import "~angular-notifier/styles";
 
 * {
   font-family: 'Roboto', Arial, sans-serif;
-  color: #616161;
+  color: #616161;/*TODO: change*/
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -13,8 +14,11 @@ body {
 }
 
 .container {
-  display: flex;
-  flex-direction: row;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.badges{
+  
 }
 
 router-outlet + *  {
@@ -111,15 +115,32 @@ app-top-bar {
   height: 68px;
   background-color: #1976d2;
   padding: 16px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  display: block;
 }
 
 app-top-bar h1 {
   color: white;
   margin: 0;
+}
+.main-menu{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.badge{
+    display: none;
+    font-style: initial;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    align-content: center;
+    align-items: center;
+    margin-left: 5px;
+    color: #ffffff;
+    background-color: #1976d2;
 }
 
 /* Checkout Cart, Shipping Prices */
@@ -138,3 +159,6 @@ app-top-bar h1 {
 }
 
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

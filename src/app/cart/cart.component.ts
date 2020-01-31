@@ -1,27 +1,35 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { NotifierService } from "angular-notifier";
 import { CartService } from "../cart.service";
-
+import { Product } from "../domains";
 @Component({
   selector: "app-cart",
   templateUrl: "./cart.component.html",
   styleUrls: ["./cart.component.css"]
 })
 export class CartComponent implements OnInit {
-  items;
-  checkoutForm;
+  items: Product[];
+  checkoutForm: FormGroup;
   constructor(
     private cartService: CartService,
-    private formBuider: FormBuilder
+    private formBuider: FormBuilder,
+    private notifier: NotifierService
   ) {
     this.items = this.cartService.getItems();
     this.checkoutForm = this.formBuider.group({
-      name: '',
-      address: ''
+      name: "",
+      address: ""
     });
   }
-  onSubmit(customerData){
-    console.warn('Your order has been submitted', customerData);
+  remoteFromCart(item: Product){
+    this.cartService.removeFromCart(item.id);
+  }
+  onSubmit(customer: any) {
+    this.cartService.checkoutOrder(customer).subscribe(data => {
+      console.log('print: ', data);
+      this.notifier.notify('success', data.message);
+    });
     this.items = this.cartService.clearCart();
     this.checkoutForm.reset();
   }

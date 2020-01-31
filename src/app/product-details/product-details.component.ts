@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { CartService } from "../cart.service";
 import { ProductService } from "../product.service";
-import { Product } from "../product";
+import { Product } from "../domains";
 
 @Component({
   selector: "app-product-details",
@@ -29,7 +29,7 @@ export class ProductDetailsComponent implements OnInit {
       );
     });
   }
-  addToCart(product) {
+  addToCart(product: Product) {
     window.alert("Your product has been added to the cart!");
     this.cartService.addToCart(product);
   }
