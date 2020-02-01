@@ -1,12 +1,33 @@
-<div class="container">
-  <nav class="main-menu">
-    <a [routerLink]="['/']">
-      <h1>Start Store</h1>
-    </a>
-    <a [routerLink]="['/cart']" class="button fancy-button">
-      <i class="material-icons">shopping_cart</i>
-      Checkout
-    <i *ngIf="itemsCount" class="badge">{{itemsCount}}</i>
-    </a>
-  </nav>
-</div>
+<header class="header">
+  <div class="container">
+    <div class="menu-wrap">
+      <a [routerLink]="['/']" class="brand">
+        <h1 class="brand-title">Start Store</h1>
+      </a>
+      <nav class="menu-nav">
+        <ul class="menu">
+          <li class="menu-item">
+            <a class="menu-link">
+              Sales
+            </a>
+          </li>
+          <li class="menu-item">
+            <a class="menu-link" [routerLink]="['/support']">
+              Support
+            </a>
+          </li>
+        </ul>
+        <ul class="menu menu-right">
+          <li class="menu-item"><a href="#" class="menu-link">Profile</a></li>
+          <li class="menu-item">
+            <a [routerLink]="['/cart']" class="button fancy-button">
+              <i class="material-icons">shopping_cart</i>
+              Checkout
+              <i *ngIf="itemsCount" class="badge">{{itemsCount}}</i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

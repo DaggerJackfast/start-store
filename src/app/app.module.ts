@@ -12,6 +12,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SupportChatComponent } from './support-chat/support-chat.component';
 
 
 const notifierOptions: NotifierOptions = {
@@ -65,6 +66,7 @@ const notifierOptions: NotifierOptions = {
       { path: 'products/:productId', component: ProductDetailsComponent },
       { path: 'cart', component: CartComponent },
       { path: 'shipping', component: ShippingComponent },
+      { path: 'support', component: SupportChatComponent },
     ]),
     NotifierModule.withConfig(notifierOptions),
     NoopAnimationsModule,
@@ -77,6 +79,7 @@ const notifierOptions: NotifierOptions = {
     ProductDetailsComponent,
     CartComponent,
     ShippingComponent,
+    SupportChatComponent,
   ],
   bootstrap: [ AppComponent ]
 })

@@ -1,32 +1,39 @@
-/* Global Styles */
+/* Imports */
+@import "~normalize.css";
 @import "~angular-notifier/styles";
 
+/* Global Styles */
+
 * {
-  font-family: 'Roboto', Arial, sans-serif;
-  color: #616161;/*TODO: change*/
+  font-family: "Roboto", Arial, sans-serif;
+  color: #616161; /*TODO: change*/
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+html,
+body {
+  height: 100%;
+}
 body {
   margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
 }
-.badges{
-  
+.badges {
 }
 
-router-outlet + *  {
+router-outlet + * {
   padding: 0 16px;
 }
 
 /* Text */
-
+/* 
 h1 {
   font-size: 32px;
 }
@@ -35,37 +42,111 @@ h2 {
   font-size: 20px;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-weight: lighter;
 }
 
 p {
   font-size: 14px;
+} */
+
+.header {
+  width: 100%;
+  /* height: 68px; */
+  background-color: #1976d2;
+  display: block;
 }
 
-/* Hyperlink */
+.brand {
+  color: white;
+  margin: 0;
+}
+.brand:hover {
+  opacity: 0.8;
+}
+.brand-title {
+  color: inherit;
+  display: inline-block;
+}
+.menu-wrap {
+  display: flex;
+  justify-content: start;
+}
+.menu-nav {
+  display: inline-flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.menu {
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu-right {
+  align-self: right;
+}
+.menu-item {
+  display: inline-block;
+  padding: 10px 15px;
+  vertical-align: middle;
+}
+.menu-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+}
+.menu-link:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+.badge {
+  display: none;
+  font-style: initial;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  align-content: center;
+  align-items: center;
+  margin-left: 5px;
+  color: #ffffff;
+  background-color: #1976d2;
+}
 
-a {
+.link {
   cursor: pointer;
   color: #1976d2;
   text-decoration: none;
 }
 
-a:hover {
+.link:hover {
   opacity: 0.8;
 }
 
+.link-underline{
+  text-decoration: underline;
+}
+.link-underline:hover{
+  text-decoration: none;
+}
 /* Input */
 
-input {
+.input {
   font-size: 14px;
   border-radius: 2px;
   padding: 8px;
   margin-bottom: 16px;
-  border: 1px solid #BDBDBD;
+  border: 1px solid #bdbdbd;
 }
 
-label {
+.label {
   font-size: 12px;
   font-weight: bold;
   margin-bottom: 4px;
@@ -74,7 +155,7 @@ label {
 }
 
 /* Button */
-.button, button {
+.button {
   display: inline-flex;
   align-items: center;
   padding: 8px 16px;
@@ -84,14 +165,15 @@ label {
   background-color: #1976d2;
   color: white;
   border: none;
+  text-decoration: none;
 }
 
-.button:hover, button:hover {
+.button:hover {
   opacity: 0.8;
   font-weight: normal;
 }
 
-.button:disabled, button:disabled {
+.button:disabled {
   opacity: 0.5;
   cursor: auto;
 }
@@ -110,42 +192,10 @@ label {
 
 /* Top Bar */
 
-app-top-bar {
-  width: 100%;
-  height: 68px;
-  background-color: #1976d2;
-  padding: 16px;
-  display: block;
-}
-
-app-top-bar h1 {
-  color: white;
-  margin: 0;
-}
-.main-menu{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.badge{
-    display: none;
-    font-style: initial;
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-    display: flex;
-    justify-content: center;
-    border-radius: 50%;
-    align-content: center;
-    align-items: center;
-    margin-left: 5px;
-    color: #ffffff;
-    background-color: #1976d2;
-}
-
 /* Checkout Cart, Shipping Prices */
 
-.cart-item, .shipping-item {
+.cart-item,
+.shipping-item {
   width: 100%;
   min-width: 400px;
   max-width: 450px;
@@ -155,10 +205,10 @@ app-top-bar h1 {
   padding: 16px 32px;
   margin-bottom: 8px;
   border-radius: 2px;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
 }
 
-.validated-error{
+.validated-error {
   display: block;
   color: #ce2722;
   margin-bottom: 10px;
@@ -166,5 +216,30 @@ app-top-bar h1 {
   font-size: 12px;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.product {
+  padding: 10px;
+  border: 1px solid #9bcdff;
+  border-radius: 3px;
+  margin: 5px 0;
+}
+.product-title {
+  color: inherit;
+}
+.product-description {
+  font-size: 15px;
+}
+
+.product-detail {
+  display: block;
+}
+.product-detail-name {
+  font-size: 1.4em;
+  color: #1976d2;
+  font-weight: bolder;
+  padding-bottom: 10px;
+}
+.product-detail-price {
+  font-size: 1.2em;
+  color: #2894ff;
+  font-weight: bolder;
+}

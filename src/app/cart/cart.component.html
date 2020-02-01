@@ -1,23 +1,24 @@
-<h3>Cart</h3>
+<h2 class="page-title">Cart</h2>
 <p>
-  <a routerLink="/shipping">Shipping Prices</a>
+  <a [routerLink]="['/shipping']" class="link link-underline">Shipping Prices</a>
 </p>
 <ng-template *ngIf="items.length ; then thenBlock else elseBlock"></ng-template>
 <ng-template #thenBlock>
   <div class="cart-item" *ngFor="let item of items">
     <span>{{item.name}}</span>
     <span>{{item.price | currency}}</span>
-    <button (click)="remoteFromCart(item)">Remove</button>
+    <button (click)="remoteFromCart(item)" class="button">Remove</button>
   </div>
   <p>Customer information: </p>
   <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
-    <div>      <label for="name"></label>
-      <input type="text" id="name" formControlName="name">
-      <span class="validated-error" *ngIf="submitted && checkoutForm.get('name').errors?.required" >*required</span>
+    <div>
+      <label for="name"></label>
+      <input type="text" id="name" formControlName="name" class="input">
+      <span class="validated-error" *ngIf="submitted && checkoutForm.get('name').errors?.required">*required</span>
     </div>
     <div>
       <label for="address"></label>
-      <input type="text" id="address" formControlName="address">
+      <input type="text" id="address" formControlName="address" class="input">
       <span class="validated-error" *ngIf="submitted && checkoutForm.get('address').errors?.required">*required</span>
     </div>
     <button class="button" type="submit">Purchase</button>
