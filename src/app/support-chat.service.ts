@@ -9,16 +9,20 @@ export class SupportChatService {
   constructor(private socket: Socket) {}
   onConnect() {
     this.socket.on("connect", () => {
-      console.log('support chat socket is connected');
-    });    
+      console.log("support chat socket is connected");
+    });
   }
-  getAllMessages(): Observable<string[]>{
+  getAllMessages(): Observable<string[]> {
+    this.socket.emit('messages');
     return this.socket.fromEvent("messages");
   }
   sendMessage(message: string) {
     this.socket.emit("message", message);
   }
-  getMessage(): Observable<string> {
+  listenMessage(): Observable<string> {
     return this.socket.fromEvent("message");
+  }
+  reset() {
+    this.socket.removeAllListeners("message");
   }
 }

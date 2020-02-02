@@ -23,19 +23,20 @@ export class SupportChatComponent implements OnInit {
   onSubmit(supportFormValue: any) {
     const { message } = supportFormValue;
     this.supportChatService.sendMessage(message);
-    
     this.reset();
   }
   private reset() {
     this.supportChatForm.reset();
   }
   ngOnInit() {
-    this.supportChatService.onConnect();
-    this.supportChatService.getAllMessages().subscribe((messages: string[])=>{
+    this.supportChatService.getAllMessages().subscribe((messages: string[]) => {
       this.messages = messages;
     });
-    this.supportChatService.getMessage().subscribe((message: string) => {
+    this.supportChatService.listenMessage().subscribe((message: string) => {
       this.messages.push(message);
     });
+  }
+  ngOnDestroy() {
+    this.supportChatService.reset();
   }
 }
