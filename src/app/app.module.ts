@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { AutosizeModule} from "ngx-autosize";
+import { environment} from "../environments/environment";
 import { ProductAlertsComponent } from './product-alerts/product-alerts.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
@@ -56,9 +59,15 @@ const notifierOptions: NotifierOptions = {
   }
 };
 
+const socketConfig: SocketIoConfig = {
+  url: environment.APIEndpoint,
+  options: {}
+}
+
 @NgModule({
   imports: [
     BrowserModule,
+    SocketIoModule.forRoot(socketConfig),
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
@@ -69,6 +78,7 @@ const notifierOptions: NotifierOptions = {
       { path: 'support', component: SupportChatComponent },
     ]),
     NotifierModule.withConfig(notifierOptions),
+    AutosizeModule,
     NoopAnimationsModule,
   ],
   declarations: [

@@ -15,6 +15,8 @@
     "@angular/router": "8.2.14",
     "angular-notifier": "^6.0.1",
     "jasmine-marbles": "0.6.0",
+    "ngx-autosize": "^1.7.2",
+    "ngx-socket-io": "^3.0.1",
     "normalize.css": "^8.0.1",
     "rxjs": "6.5.4",
     "rxjs-compat": "^6.5.4",

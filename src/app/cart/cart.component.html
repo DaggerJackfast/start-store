@@ -12,12 +12,12 @@
   <p>Customer information: </p>
   <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
     <div>
-      <label for="name"></label>
+      <label for="name">Name:</label>
       <input type="text" id="name" formControlName="name" class="input">
       <span class="validated-error" *ngIf="submitted && checkoutForm.get('name').errors?.required">*required</span>
     </div>
     <div>
-      <label for="address"></label>
+      <label for="address">Address:</label>
       <input type="text" id="address" formControlName="address" class="input">
       <span class="validated-error" *ngIf="submitted && checkoutForm.get('address').errors?.required">*required</span>
     </div>

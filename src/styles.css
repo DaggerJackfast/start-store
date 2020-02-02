@@ -130,10 +130,10 @@ p {
   opacity: 0.8;
 }
 
-.link-underline{
+.link-underline {
   text-decoration: underline;
 }
-.link-underline:hover{
+.link-underline:hover {
   text-decoration: none;
 }
 /* Input */
@@ -242,4 +242,22 @@ p {
   font-size: 1.2em;
   color: #2894ff;
   font-weight: bolder;
+}
+.support {
+  padding: 5px 0 20px;
+}
+.support-message{
+  padding: 5px 10px;
+}
+.support-chat {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  padding-top: 30px;
+}
+.support-message-input {
+  width: 100%;
+  display: block;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
