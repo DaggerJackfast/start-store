@@ -1,0 +1,22 @@
+<h2>Registration</h2>
+<div class="registration">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+<div>
+  <label htmlFor="register-email">Email:</label>
+  <input formControlName="email" id="register-email" type="email">
+  <div *ngIf="submitted && f.email.errors">
+    <div *ngIf="f.email.errors.required">Email is required</div>
+    <div *ngIf="f.email.errors.email">Email is required</div>
+  </div>
+</div>
+<div>
+  <label for="register-password">Password:</label>
+  <input type="password" formControlName="password" id="register-password">
+  <div *ngIf="submitted && f.password.errors">
+    <div *ngIf="f.password.errors.required">Password is required</div>
+    <div *ngIf="f.password.errors.minlenght">Password must be at least 6 characters</div>
+  </div>
+</div>
+<button class="button" type="submit">Sign up</button>
+</form>
+</div>

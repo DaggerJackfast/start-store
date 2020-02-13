@@ -16,6 +16,7 @@ import { CartComponent } from "./cart/cart.component";
 import { ShippingComponent } from "./shipping/shipping.component";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { SupportChatComponent } from "./support-chat/support-chat.component";
+import { UserRegisterComponent } from "./user-register/user-register.component";
 
 const notifierOptions: NotifierOptions = {
   position: {
@@ -74,7 +75,8 @@ const socketConfig: SocketIoConfig = {
       { path: "products/:productId", component: ProductDetailsComponent },
       { path: "cart", component: CartComponent },
       { path: "shipping", component: ShippingComponent },
-      { path: "support", component: SupportChatComponent }
+      { path: "support", component: SupportChatComponent },
+      { path: "sign-up", component: UserRegisterComponent }
     ]),
     NotifierModule.withConfig(notifierOptions),
     AutosizeModule,
@@ -88,7 +90,8 @@ const socketConfig: SocketIoConfig = {
     ProductDetailsComponent,
     CartComponent,
     ShippingComponent,
-    SupportChatComponent
+    SupportChatComponent,
+    UserRegisterComponent
   ],
   bootstrap: [AppComponent]
 })
