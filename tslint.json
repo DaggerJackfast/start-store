@@ -1,0 +1,10 @@
+{
+    "extends": [
+        "tslint:recommended",
+        "tslint-angular"
+    ],
+    "quotemark": [
+        true,
+        "double"
+    ]
+}
