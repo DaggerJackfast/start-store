@@ -6,7 +6,7 @@ import {
   AbstractControl
 } from "@angular/forms";
 import { NotifierService } from "angular-notifier";
-import { UserService } from "../user.service";
+import { UserService } from "../../user.service";
 
 @Component({
   selector: "app-user-register",

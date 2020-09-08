@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
-import { UserService } from '../user.service';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: "app-user-login",
@@ -34,7 +34,7 @@ export class UserLoginComponent implements OnInit {
       this.notifier.notify(data.status.toLowerCase(), data.message);
     });
   }
-  private reset() {
+  private reset(): void {
     this.submitted = false;
     this.loginForm.reset();
   }

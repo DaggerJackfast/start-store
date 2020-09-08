@@ -16,8 +16,9 @@ import { CartComponent } from "./cart/cart.component";
 import { ShippingComponent } from "./shipping/shipping.component";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { SupportChatComponent } from "./support-chat/support-chat.component";
-import { UserRegisterComponent } from "./user-register/user-register.component";
-import { UserLoginComponent } from './user-login/user-login.component';
+import { UserRegisterComponent } from "./authorization/user-register/user-register.component";
+import { UserLoginComponent } from './authorization/user-login/user-login.component';
+import { AuthorizationModule } from './authorization/authorization.module';
 
 const notifierOptions: NotifierOptions = {
   position: {
@@ -74,7 +75,8 @@ const socketConfig: SocketIoConfig = {
     AppRoutingModule,
     NotifierModule.withConfig(notifierOptions),
     AutosizeModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    AuthorizationModule
   ],
   declarations: [
     AppComponent,
