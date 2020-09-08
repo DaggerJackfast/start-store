@@ -1,5 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AbstractControl
+} from "@angular/forms";
 import { NotifierService } from "angular-notifier";
 import { UserService } from "../user.service";
 
@@ -16,19 +21,32 @@ export class UserRegisterComponent implements OnInit {
     private notifier: NotifierService,
     private userService: UserService
   ) {
-    this.registerForm = this.formBuilder.group({
-      email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.minLength(6)]]
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        email: ["", [Validators.required, Validators.email]],
+        password: ["", [Validators.required, Validators.minLength(6)]],
+        passwordRepeat: ["", [Validators.required]]
+      },
+      {
+        validator: this.passwordConfirm
+      }
+    );
+  }
+  passwordConfirm(control: AbstractControl) {
+    const password: string = control.get("password").value;
+    const passwordRepeat: string = control.get("passwordRepeat").value;
+    if (password !== passwordRepeat) {
+      control.get("passwordRepeat").setErrors({ noPasswordMatch: true });
+    }
   }
   get f() {
     return this.registerForm.controls;
   }
   onSubmit(registerFormValue: any) {
-    console.log("aaa");
     this.submitted = true;
+    if (this.registerForm.invalid) return;
     const { email, password } = registerFormValue;
-    this.userService.registerUser(email, password).subscribe(data=>{
+    this.userService.registerUser(email, password).subscribe(data => {
       this.reset();
       this.notifier.notify(data.status.toLowerCase(), data.message);
     });

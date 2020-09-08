@@ -17,6 +17,13 @@
     <div *ngIf="f.password.errors.minlenght">Password must be at least 6 characters</div>
   </div>
 </div>
+<div>
+  <label for="register-password-repeat">Password repeat:</label>
+  <input type="password" formControlName="passwordRepeat" id="register-password-repeat">
+  <div *ngIf="submitted && f.passwordRepeat.errors">
+    <div *ngIf="f.passwordRepeat.errors.noPasswordMatch">Password and password repeat must be equal</div>
+  </div>
+</div>
 <button class="button" type="submit">Sign up</button>
 </form>
 </div>
