@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { NotifierService } from "angular-notifier";
 import { CartService } from "../cart.service";
-import { Product } from "../domains";
+import { Product } from "../models";
 @Component({
   selector: "app-cart",
   templateUrl: "./cart.component.html",
