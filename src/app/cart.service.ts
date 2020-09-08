@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../environments/environment";
-import { Product, Response } from "./domains";
+import { Product, Response } from "./models";
 import { BehaviorSubject } from "rxjs";
 
 @Injectable({
