@@ -1,34 +1,38 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { SupportChatService } from "../support-chat.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SupportChatService } from '../support-chat.service';
 
 @Component({
-  selector: "app-support-chat",
-  templateUrl: "./support-chat.component.html",
-  styleUrls: ["./support-chat.component.css"]
+  selector: 'app-support-chat',
+  templateUrl: './support-chat.component.html',
+  styleUrls: ['./support-chat.component.css']
 })
-export class SupportChatComponent implements OnInit {
+export class SupportChatComponent implements OnInit, OnDestroy {
   messages: string[];
   supportChatForm: FormGroup;
+
   constructor(
     private supportChatService: SupportChatService,
     private formBuilder: FormBuilder
   ) {
     this.messages = [];
     this.supportChatForm = this.formBuilder.group({
-      message: ["", [Validators.required]]
+      message: ['', [Validators.required]]
     });
     this.supportChatService.onConnect();
   }
-  onSubmit(supportFormValue: any) {
-    const { message } = supportFormValue;
+
+  onSubmit(supportFormValue: any): void {
+    const { message} = supportFormValue;
     this.supportChatService.sendMessage(message);
     this.reset();
   }
-  private reset() {
+
+  private reset(): void {
     this.supportChatForm.reset();
   }
-  ngOnInit() {
+
+  ngOnInit(): void {
     this.supportChatService.getAllMessages().subscribe((messages: string[]) => {
       this.messages = messages;
     });
@@ -36,7 +40,8 @@ export class SupportChatComponent implements OnInit {
       this.messages.push(message);
     });
   }
-  ngOnDestroy() {
+
+  ngOnDestroy(): void {
     this.supportChatService.reset();
   }
 }

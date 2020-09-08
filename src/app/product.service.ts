@@ -1,20 +1,21 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { map, catchError } from "rxjs/operators";
-import { Product } from "./models";
-import { environment } from "../environments/environment";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { Product } from './models';
+import { environment } from '../environments/environment';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ProductService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getProducts(): Observable<Product[]> {
     return this.http.get(`${environment.APIEndpoint}/products`).pipe(
       map((data: any[] | any) => {
-        return data.map(function(product: any) {
+        return data.map((product: any)  => {
           return {
             id: product.id,
             name: product.name,

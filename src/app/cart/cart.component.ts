@@ -1,47 +1,50 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { NotifierService } from "angular-notifier";
-import { CartService } from "../cart.service";
-import { Product } from "../models";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotifierService } from 'angular-notifier';
+import { CartService } from '../cart.service';
+import { Product } from '../models';
+
 @Component({
-  selector: "app-cart",
-  templateUrl: "./cart.component.html",
-  styleUrls: ["./cart.component.css"]
+  selector: 'app-cart',
+  templateUrl: './cart.component.html',
+  styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
   items: Product[];
   checkoutForm: FormGroup;
-  submitted: boolean = false;
+  submitted = false;
+
   constructor(
     private cartService: CartService,
-    private formBuider: FormBuilder,
+    private formBuilder: FormBuilder,
     private notifier: NotifierService
   ) {
     this.items = this.cartService.getItems();
-    this.checkoutForm = this.formBuider.group({
-      "name": ["", [Validators.required]],
-      "address": ["", [Validators.required]]
+    this.checkoutForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      address: ['', [Validators.required]]
     });
   }
-  remoteFromCart(item: Product){
+  remoteFromCart(item: Product): void {
     this.cartService.removeFromCart(item.id);
   }
-  onSubmit(customer: any) {
+
+  onSubmit(customer: any): void {
     this.submitted = true;
     if(this.checkoutForm.invalid) return;
     this.cartService.checkoutOrder(customer).subscribe(data => {
       this.reset();
       this.notifier.notify('success', data.message);
-    });    
+    });
   }
 
-  private reset(){
+  private reset(): void {
     this.items = this.cartService.clearCart();
     this.submitted = false;
     this.checkoutForm.reset();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.items = this.cartService.getItems();
   }
 }

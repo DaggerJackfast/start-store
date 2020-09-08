@@ -3,30 +3,30 @@ import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { UserService } from '../../user.service';
+import { Controls } from '../../models';
 
 @Component({
-  selector: "app-user-login",
-  templateUrl: "./user-login.component.html",
-  styleUrls: ["./user-login.component.css"]
+  selector: 'app-user-login',
+  templateUrl: './user-login.component.html',
+  styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
   loginForm: FormGroup;
-  submitted: boolean = false;
+  submitted = false;
   constructor(
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
     private userService: UserService
   ) {
     this.loginForm = this.formBuilder.group({
-      email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.minLength(6)]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
-  get f() {
+  get f(): Controls {
     return this.loginForm.controls;
   }
-  onSubmit(loginFormValue: any) {
-    console.log("aaa");
+  onSubmit(loginFormValue: any): void {
     this.submitted = true;
     const { email, password } = loginFormValue;
     this.userService.loginUser(email, password).subscribe(data => {
@@ -39,5 +39,5 @@ export class UserLoginComponent implements OnInit {
     this.loginForm.reset();
   }
 
-  ngOnInit() {}
+  ngOnInit(): void { }
 }

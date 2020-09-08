@@ -1,29 +1,23 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { map } from "rxjs/operators";
-import {Response} from './models/base';
+import { Response } from './models/base';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
-  registerUser(email: string, password: string) {
-    return this.http.post<Response>(
-      `${environment.APIEndpoint}/users/sign-up`,
-      {
-        email,
-        password
-      }
-    );
+  constructor(private http: HttpClient) {
   }
-  loginUser(email: string, password: string) {
-    return this.http.post<Response>(
-      `${environment.APIEndpoint}/users/sign-in`, {
-        email,
-        password
-      }
-    );
+
+  registerUser(email: string, password: string): Observable<Response> {
+    const data = { email, password };
+    return this.http.post<Response>(`${environment.APIEndpoint}/users/sign-up`, data);
+  }
+
+  loginUser(email: string, password: string): Observable<Response> {
+    const data = { email, password };
+    return this.http.post<Response>(`${environment.APIEndpoint}/users/sign-in`, data);
   }
 }

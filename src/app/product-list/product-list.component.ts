@@ -1,16 +1,20 @@
-import { Component } from "@angular/core";
-import { ProductService } from "../product.service";
-import { Product } from "../models";
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../product.service';
+import { Product } from '../models';
+
 @Component({
-  selector: "app-product-list",
-  templateUrl: "./product-list.component.html",
-  styleUrls: ["./product-list.component.css"]
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
   products: Product[] = [];
   error: any;
-  constructor(private productService: ProductService) {}
-  ngOnInit() {
+
+  constructor(private productService: ProductService) {
+  }
+
+  ngOnInit(): void {
     this.productService.getProducts().subscribe(
       data => (this.products = data),
       error => {
@@ -19,11 +23,12 @@ export class ProductListComponent {
       }
     );
   }
-  share() {
-    window.alert("The product has been shared!");
+
+  share(): void {
+    window.alert('The product has been shared!');
   }
 
-  onNotify() {
-    window.alert("You will be notified when the product goes on sale");
+  onNotify(): void {
+    window.alert('You will be notified when the product goes on sale');
   }
 }

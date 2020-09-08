@@ -1,3 +1,10 @@
+import { AbstractControl } from '@angular/forms';
+
+
+export interface Controls {
+  [key: string]: AbstractControl;
+}
+
 export interface MessageResponse {
   message: string;
 }
