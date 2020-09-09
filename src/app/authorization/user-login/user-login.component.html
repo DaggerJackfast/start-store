@@ -14,7 +14,7 @@
       <input type="password" formControlName="password" id="login-password">
       <div *ngIf="submitted && f.password.errors">
         <div *ngIf="f.password.errors.required">Password is required</div>
-        <div *ngIf="f.password.errors.minlenght">Password must be at least 6 characters</div>
+        <div *ngIf="f.password.errors.minLength">Password must be at least 6 characters</div>
       </div>
     </div>
     <button class="button" type="submit">Sign in</button>

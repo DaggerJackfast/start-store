@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
-import { UserService } from '../../user.service';
-import { Controls } from '../../models';
+import { UserService } from '../../core/services/user.service';
+import { Controls } from '../../core/models';
 
 @Component({
   selector: 'app-user-login',
@@ -13,6 +13,7 @@ import { Controls } from '../../models';
 export class UserLoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private notifier: NotifierService,
@@ -23,9 +24,11 @@ export class UserLoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
+
   get f(): Controls {
     return this.loginForm.controls;
   }
+
   onSubmit(loginFormValue: any): void {
     this.submitted = true;
     const { email, password } = loginFormValue;
@@ -34,10 +37,12 @@ export class UserLoginComponent implements OnInit {
       this.notifier.notify(data.status.toLowerCase(), data.message);
     });
   }
+
   private reset(): void {
     this.submitted = false;
     this.loginForm.reset();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CartService } from '../cart.service';
-import { ProductService } from '../product.service';
-import { Product } from '../models';
+import { CartService } from '../core/services/cart.service';
+import { ProductService } from '../core/services/product.service';
+import { Product } from '../core/models';
 
 @Component({
   selector: 'app-product-details',

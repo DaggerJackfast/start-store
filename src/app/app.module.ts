@@ -19,6 +19,7 @@ import { SupportChatComponent } from './support-chat/support-chat.component';
 import { UserRegisterComponent } from './authorization/user-register/user-register.component';
 import { UserLoginComponent } from './authorization/user-login/user-login.component';
 import { AuthorizationModule } from './authorization/authorization.module';
+import { CoreModule } from './core/core.module';
 
 const notifierOptions: NotifierOptions = {
   position: {
@@ -73,6 +74,7 @@ const socketConfig: SocketIoConfig = {
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    CoreModule,
     NotifierModule.withConfig(notifierOptions),
     AutosizeModule,
     NoopAnimationsModule,

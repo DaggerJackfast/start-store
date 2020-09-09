@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../cart.service';
-import { Shipping } from '../models';
+import { CartService } from '../core/services/cart.service';
+import { Shipping } from '../core/models';
 import { Observable } from 'rxjs';
 
 @Component({

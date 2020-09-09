@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SupportChatService } from '../support-chat.service';
+import { SupportChatService } from '../core/services/support-chat.service';
 
 @Component({
   selector: 'app-support-chat',

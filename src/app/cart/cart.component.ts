@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
-import { CartService } from '../cart.service';
-import { Product } from '../models';
+import { CartService } from '../core/services/cart.service';
+import { Product } from '../core/models';
 
 @Component({
   selector: 'app-cart',

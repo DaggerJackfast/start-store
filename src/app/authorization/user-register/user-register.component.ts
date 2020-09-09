@@ -6,8 +6,8 @@ import {
   AbstractControl
 } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
-import { UserService } from '../../user.service';
-import { Controls } from '../../models';
+import { UserService } from '../../core/services/user.service';
+import { Controls } from '../../core/models';
 
 @Component({
   selector: 'app-user-register',
