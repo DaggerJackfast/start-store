@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NotifierService } from 'angular-notifier';
 import { CartService } from '../core/services/cart.service';
 import { Product } from '../core/models';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -17,7 +17,7 @@ export class CartComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private formBuilder: FormBuilder,
-    private notifier: NotifierService
+    private toastr: ToastrService
   ) {
     this.items = this.cartService.getItems();
     this.checkoutForm = this.formBuilder.group({
@@ -34,7 +34,7 @@ export class CartComponent implements OnInit {
     if(this.checkoutForm.invalid) return;
     this.cartService.checkoutOrder(customer).subscribe(data => {
       this.reset();
-      this.notifier.notify('success', data.message);
+      this.toastr.success('success', data.message);
     });
   }
 

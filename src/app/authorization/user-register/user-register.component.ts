@@ -5,9 +5,9 @@ import {
   Validators,
   AbstractControl
 } from '@angular/forms';
-import { NotifierService } from 'angular-notifier';
 import { UserService } from '../../core/services/user.service';
 import { Controls } from '../../core/models';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-register',
@@ -20,7 +20,7 @@ export class UserRegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private notifier: NotifierService,
+    private toastr: ToastrService,
     private userService: UserService
   ) {
     this.registerForm = this.formBuilder.group(
@@ -54,7 +54,7 @@ export class UserRegisterComponent implements OnInit {
     const { email, password } = registerFormValue;
     this.userService.registerUser(email, password).subscribe(data => {
       this.reset();
-      this.notifier.notify(data.status.toLowerCase(), data.message);
+      this.toastr.success(data.status.toLowerCase(), data.message);
     });
   }
 

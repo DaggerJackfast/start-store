@@ -6,7 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { NotifierModule, NotifierOptions } from 'angular-notifier';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { ToastrModule } from 'ngx-toastr';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { AutosizeModule } from 'ngx-autosize';
 import { environment } from '../environments/environment';
@@ -21,46 +22,6 @@ import { UserLoginComponent } from './authorization/user-login/user-login.compon
 import { AuthorizationModule } from './authorization/authorization.module';
 import { CoreModule } from './core/core.module';
 
-const notifierOptions: NotifierOptions = {
-  position: {
-    horizontal: {
-      position: 'left',
-      distance: 12
-    },
-    vertical: {
-      position: 'bottom',
-      distance: 12,
-      gap: 10
-    }
-  },
-  theme: 'material',
-  behaviour: {
-    autoHide: 5000,
-    onClick: 'hide',
-    onMouseover: 'pauseAutoHide',
-    showDismissButton: true,
-    stacking: 4
-  },
-  animations: {
-    enabled: true,
-    show: {
-      preset: 'slide',
-      speed: 300,
-      easing: 'ease'
-    },
-    hide: {
-      preset: 'fade',
-      speed: 300,
-      easing: 'ease',
-      offset: 50
-    },
-    shift: {
-      speed: 300,
-      easing: 'ease'
-    },
-    overlap: 150
-  }
-};
 
 const socketConfig: SocketIoConfig = {
   url: environment.APIEndpoint,
@@ -75,7 +36,8 @@ const socketConfig: SocketIoConfig = {
     ReactiveFormsModule,
     AppRoutingModule,
     CoreModule,
-    NotifierModule.withConfig(notifierOptions),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     AutosizeModule,
     NoopAnimationsModule,
     AuthorizationModule

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../core/services/user.service';
 import { Controls } from '../../core/models';
 
@@ -16,7 +16,7 @@ export class UserLoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private notifier: NotifierService,
+    private toastr: ToastrService,
     private userService: UserService
   ) {
     this.loginForm = this.formBuilder.group({
@@ -34,7 +34,7 @@ export class UserLoginComponent implements OnInit {
     const { email, password } = loginFormValue;
     this.userService.loginUser(email, password).subscribe(data => {
       this.reset();
-      this.notifier.notify(data.status.toLowerCase(), data.message);
+      this.toastr.success(data.status.toLowerCase(), data.message);
     });
   }
 

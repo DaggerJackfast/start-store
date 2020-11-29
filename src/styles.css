@@ -1,12 +1,13 @@
 /* Imports */
 @import "~normalize.css";
-@import "~angular-notifier/styles";
+@import '~ngx-toastr/toastr';
 
 /* Global Styles */
 
 * {
   font-family: "Roboto", Arial, sans-serif;
-  color: #616161; /*TODO: change*/
+  color: #616161;
+  /*TODO: change*/
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -16,6 +17,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -25,10 +27,10 @@ body {
   max-width: 1200px;
   margin: 0 auto;
 }
-.badges {
-}
 
-router-outlet + * {
+.badges {}
+
+router-outlet+* {
   padding: 0 16px;
 }
 
@@ -62,17 +64,21 @@ p {
   color: white;
   margin: 0;
 }
+
 .brand:hover {
   opacity: 0.8;
 }
+
 .brand-title {
   color: inherit;
   display: inline-block;
 }
+
 .menu-wrap {
   display: flex;
   justify-content: start;
 }
+
 .menu-nav {
   display: inline-flex;
   flex-grow: 1;
@@ -81,29 +87,35 @@ p {
   align-items: center;
   flex-direction: row;
 }
+
 .menu {
   display: block;
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 .menu-right {
   align-self: right;
 }
+
 .menu-item {
   display: inline-block;
   padding: 10px 15px;
   vertical-align: middle;
 }
+
 .menu-link {
   color: #ffffff;
   text-decoration: none;
   font-size: 18px;
 }
+
 .menu-link:hover {
   text-decoration: underline;
   opacity: 0.8;
 }
+
 .badge {
   display: none;
   font-style: initial;
@@ -133,9 +145,11 @@ p {
 .link-underline {
   text-decoration: underline;
 }
+
 .link-underline:hover {
   text-decoration: none;
 }
+
 /* Input */
 
 .input {
@@ -222,9 +236,11 @@ p {
   border-radius: 3px;
   margin: 5px 0;
 }
+
 .product-title {
   color: inherit;
 }
+
 .product-description {
   font-size: 15px;
 }
@@ -232,29 +248,35 @@ p {
 .product-detail {
   display: block;
 }
+
 .product-detail-name {
   font-size: 1.4em;
   color: #1976d2;
   font-weight: bolder;
   padding-bottom: 10px;
 }
+
 .product-detail-price {
   font-size: 1.2em;
   color: #2894ff;
   font-weight: bolder;
 }
+
 .support {
   padding: 5px 0 20px;
 }
-.support-message{
+
+.support-message {
   padding: 5px 10px;
 }
+
 .support-chat {
   position: relative;
   width: 100%;
   bottom: 0;
   padding-top: 30px;
 }
+
 .support-message-input {
   width: 100%;
   display: block;
